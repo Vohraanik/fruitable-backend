@@ -25,12 +25,15 @@ app.use(session({
 }));
 app.use(cors(
     {
-        origin: process.env.SCOKETIO_URL,
-        credentials:true
+        // origin: process.env.SCOKETIO_URL,
+        origin: 'https://fruitablee.vercel.app',
+        credentials: true
+
     }
 ));
+
 app.use(cookieParser());
-app.use(require('express-session')({ secret: 'Anikboss', resave: true, saveUninitialized: true }));
+app.use(require('express-session')({ secret: process.env.REFRESHTOKEN, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
