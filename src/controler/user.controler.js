@@ -181,6 +181,8 @@ const deleteuser = async (req, res) => {
 };
 
 const register = async (req, res) => {
+    console.log(req.body);
+    
     try {
         const { email, password } = req.body;
 
@@ -227,13 +229,15 @@ const register = async (req, res) => {
         }
 
        return res.status(201).json({
-            message: "User created successfully",
+           message: "User created successfully",
             success: true,
             data: userDataF
         })
 
 
     } catch (error) {
+        console.log(error);
+        
        return res.status(500).json({
             message: "Error occurred while creating user",
             success: false
@@ -268,14 +272,14 @@ const login = async (req, res) => {
         const optionsAcc = {
             httpOnly: true,
             secure: true,
-            sameSite:"none",
+            SameSite:"none",
             maxAge:  60 * 60 * 1000,
         }
 
         const optionsRff = {
             httpOnly: true,
             secure: true,
-            sameSite:"none",
+            SameSite:"none",
             maxAge: 3 * 24 * 60 * 60 * 1000,
         }
 
@@ -347,7 +351,7 @@ const generateNewToken = async (req, res) => {
         const options = {
             httpOnly: true,
             secure: true,
-            sameSite:"none",
+            SameSite:"none",
         };
 
         res.status(200)
