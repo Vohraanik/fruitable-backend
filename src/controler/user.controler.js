@@ -209,7 +209,7 @@ const register = async (req, res) => {
 
         const userData = await Users.create({ ...req.body, password: hashPass });
         // const userData = await Users.create({ ...req.body, password: hashPass,avtar:req.file.path });
-        console.log(userData);
+        console.log(userData,"dfdf");
 
         if (!userData) {
             return res.status(500).json({

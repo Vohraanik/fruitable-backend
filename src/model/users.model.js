@@ -9,9 +9,9 @@ const usersSchema = new mongoose.Schema(
             trim:true,
             lowercase:true
         },
-        address:{
-            type: String,
-        },
+        // address:{
+        //     type: String,
+        // },
         email:{
             type: String,
             required: true,
@@ -23,10 +23,10 @@ const usersSchema = new mongoose.Schema(
             type: String,
             trim:true,         
         },
-        mobile_number:{
-            type: Number,
-            unique: true
-        },
+        // mobile_number:{
+        //     type: Number,
+        //     unique: true
+        // },
         googleId:{
             type:String
         },
