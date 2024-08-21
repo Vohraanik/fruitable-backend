@@ -59,9 +59,9 @@ app.use(passport.session());
 
 app.use(express.json());
 
-app.use((req,res)=>{
-    res.send('hellow world');
-})
+// app.use((req,res)=>{
+//     res.send('hellow world');
+// })
 app.use("/api/v1", route);
 
 connectdb();

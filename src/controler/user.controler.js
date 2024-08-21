@@ -404,6 +404,8 @@ const logout = async (req, res) => {
 
 
 const authChecked = async (req, res) => {
+    console.log(res.body);
+    
 try {
     const accessToken = req.cookies.accessToken;
 
