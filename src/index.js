@@ -8,14 +8,33 @@ var cors = require('cors');
 var cookieParser = require('cookie-parser');
 const googleLoginProvider = require("./utils/provider");
 const passport = require("passport");
-const connectChat = require("./utils/scoketIo");
+// const connectChat = require("./utils/scoketIo");
 const session = require("express-session");
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = YAML.load('./src/api.yaml'); 
 
 
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+googleLoginProvider();
+const _dirname = path.resolve();
+
+const __swaggerDistPath = path.join(_dirname, 'node_modules', 'swagger-ui-dist'); //install swagger-ui-dist
+
+const swaggerDocument = YAML.load(path.resolve('./public', 'api.yaml'));
+
+
+app.use(
+  '/api/docs',
+  express.static(__swaggerDistPath, { index: false }), // Serve Swagger UI assets
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, {
+    swaggerOptions: {
+      url: '/public/api.yaml' // Path to your YAML file
+    }
+  })
+);
+
+// const swaggerDocument = YAML.load('./src/api.yaml'); 
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(session({
     secret:process.env.REFRESHTOKEN,
@@ -41,8 +60,8 @@ app.use(express.json());
 app.use("/api/v1", route);
 
 connectdb();
-googleLoginProvider();
-connectChat();
+
+// connectChat();
 
 app.listen(8080, () => {
     console.log("server started at port 8080");
