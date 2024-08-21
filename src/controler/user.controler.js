@@ -181,10 +181,12 @@ const deleteuser = async (req, res) => {
 };
 
 const register = async (req, res) => {
-    console.log(req.body);
+   
+
     
     try {
         const { email, password } = req.body;
+        console.log(req.body,"sdd");
 
         const user = await Users.findOne({
             $or: [{ email }]
@@ -198,7 +200,7 @@ const register = async (req, res) => {
         }
 
         const hashPass = await bcrypt.hash(password, 10);
-        console.log(hashPass);
+        console.log(hashPass,"dgdfg");
 
         if (!hashPass) {
             return res.status(500).json({
@@ -219,7 +221,7 @@ const register = async (req, res) => {
         }
 
         const userDataF = await Users.findById(userData._id).select("-password");
-        console.log(userDataF);
+        console.log(userDataF,"ssdfsdf");
 
 
         try {
@@ -272,14 +274,14 @@ const login = async (req, res) => {
         const optionsAcc = {
             httpOnly: true,
             secure: true,
-            sameSite:"none",
+            sameSite:"None",
             maxAge:  60 * 60 * 1000,
         }
 
         const optionsRff = {
             httpOnly: true,
             secure: true,
-            sameSite:"none",
+            sameSite:"None",
             maxAge: 3 * 24 * 60 * 60 * 1000,
         }
 
@@ -351,7 +353,7 @@ const generateNewToken = async (req, res) => {
         const options = {
             httpOnly: true,
             secure: true,
-            sameSite:"none",
+            sameSite:"None",
         };
 
         res.status(200)
