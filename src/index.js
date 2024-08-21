@@ -26,7 +26,7 @@ app.use(session({
 app.use(cors(
     {
         // origin: process.env.SCOKETIO_URL,
-        origin: "https://fruitable-frontend-five.vercel.app/",
+        origin: "https://fruitable-frontend-five.vercel.app",
         credentials: true
 
     }
