@@ -57,12 +57,6 @@ app.use(require('express-session')({ secret: process.env.REFRESHTOKEN, resave: t
 app.use(passport.initialize());
 app.use(passport.session());
 
-res.cookie('cookieName', 'cookieValue', {
-  httpOnly: true,
-  secure: true,
-  sameSite: 'None' 
-});
-
 app.use(express.json());
 
 // app.use((req,res)=>{
