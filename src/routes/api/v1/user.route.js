@@ -63,12 +63,14 @@ router.get('/googleLogin',
                     const optionsAcc = {
                         httpOnly: true,
                         secure: true,
+                        sameSite:"none",
                         maxAge: 60 * 60 * 1000,
                     };
     
                     const optionsRff = {
                         httpOnly: true,
                         secure: true,
+                        sameSite:"none",
                         maxAge: 3 * 24 * 60 * 60 * 1000, 
                     };
     

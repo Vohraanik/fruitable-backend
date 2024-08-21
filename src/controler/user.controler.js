@@ -24,6 +24,7 @@ const genAccRefToken = async (id) => {
             {
                 _id: user._id,
                 role: user.role,
+            
                 expiresIn: '1 hour'
             },
             process.env.ACCESSTOKEN,
@@ -61,7 +62,7 @@ const listuser = async (req, res) => {
             })
         }
 
-        res.status(200).json({
+       return res.status(200).json({
             message: "user fetched successfully",
             success: true,
             data: user,
@@ -80,19 +81,19 @@ const getuser = async (req, res) => {
     try {
         const user = await Users.findById(req.params.user_id);
         if (!user) {
-            res.status(404).json({
+           return res.status(404).json({
                 message: "user not found",
                 success: false,
             })
         }
-        res.status(200).json({
+        return res.status(200).json({
             message: "user fetched successfully",
             success: true,
             data: user,
         })
 
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Error occurred while fetching user" + error.message,
             success: false
         })
@@ -267,12 +268,14 @@ const login = async (req, res) => {
         const optionsAcc = {
             httpOnly: true,
             secure: true,
+            sameSite:"none",
             maxAge:  60 * 60 * 1000,
         }
 
         const optionsRff = {
             httpOnly: true,
             secure: true,
+            sameSite:"none",
             maxAge: 3 * 24 * 60 * 60 * 1000,
         }
 
@@ -344,6 +347,7 @@ const generateNewToken = async (req, res) => {
         const options = {
             httpOnly: true,
             secure: true,
+            sameSite:"none",
         };
 
         res.status(200)
@@ -382,7 +386,7 @@ const logout = async (req, res) => {
                 message: "User not found"
             });
         }
-        res.status(200)
+        return res.status(200)
             .clearCookie("accessToken")
             .clearCookie("refreshToken")
             .json({
