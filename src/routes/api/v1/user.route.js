@@ -77,7 +77,7 @@ router.get('/googleLogin',
                     res.cookie("accessToken", accessToken, optionsAcc)
                        .cookie("refreshToken", refreshToken, optionsRff);
     
-                    return res.redirect("http://localhost:3000");
+                    return res.redirect("https://fruitable-frontend-five.vercel.app");
     
                 } catch (error) {
                     console.log(error);
