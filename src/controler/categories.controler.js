@@ -3,11 +3,16 @@ const { param } = require("../routes/api/v1/categories.route");
 const { sendOtp } = require("../utils/twilio");
 
 const listcategories = async(req,res) => {
-    try {
-      console.log(req.query.page,req.query.pageSize);     
+  // console.log("sdsds");
+  
+    try {  
       let page = parseInt(req.query.page);
       let pageSize = parseInt(req.query.pageSize);
         const categories = await Categories.find();
+        console.log(categories,page,pageSize);
+        
+    
+        
         
       if(page <=0 && pageSize<=0){
         return  res.status(404).json({
@@ -24,6 +29,8 @@ const listcategories = async(req,res) => {
         paginatedData = categories.slice(startIndex,endIndex)
       }
 
+
+      
         if(!categories || categories.length === 0){
             return res.status(404).json({
                 message: "No categories found",
@@ -31,16 +38,24 @@ const listcategories = async(req,res) => {
          
             })
         }
+        if (isNaN(page) || isNaN(pageSize) || page <= 0 || pageSize <= 0) {
+  
+          return res.status(200).json({
+              message: "Categories fetched successfully",
+              success: true,
+              data: categories,
+          });
+      }
 
-        res.status(200).json({
+       return res.status(200).json({
             message: "Categories fetched successfully",
             success: true,
-            data: paginatedData,
+            data: paginatedData ,
         })
 
 
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Error occurred while fetching products" + error.message,
             success: false        
         })
@@ -51,19 +66,20 @@ const getcategories = async(req,res) => {
     try {
         const category = await Categories.findById(req.params.category_id);
         if(!category){
-            res.status(404).json({
+          return  res.status(404).json({
                 message: "Category not found",
                 success: false,
                 })
                 }
-                res.status(200).json({
+               return res.status(200).json({
                     message: "Category fetched successfully",
                     success: true,
                     data: category,
                     })
 
+
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: "Error occurred while fetching category" + error.message,
             success: false        
         })
@@ -73,7 +89,6 @@ const getcategories = async(req,res) => {
 
 const addcategories = async (req, res) => {
     try {
-    console.log(req.body);
    const category = await Categories.create(req.body);
 
         if (!category) {
@@ -97,8 +112,10 @@ const addcategories = async (req, res) => {
 };
 
 const updatecategories = async (req, res) => {
+  console.log("Sds");
+  
     try {
-        console.log(req.body);
+        console.log(req.body,"sd");
         const category_id = (req.params.category_id)
         const category = await Categories.findByIdAndUpdate(category_id,req.body,{new:true,runValidators:true});
         console.log(category);

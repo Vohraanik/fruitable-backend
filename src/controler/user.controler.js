@@ -13,6 +13,8 @@ const { log } = require("console");
 
 
 const genAccRefToken = async (id) => {
+    console.log(id);
+    
     try {
         const user = await Users.findById(id);
 

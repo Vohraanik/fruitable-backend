@@ -1,11 +1,13 @@
 const express = require("express");
 const { productsControler } = require("../../../controler");
 const upload = require("../../../middleware/upload");
+const auth = require("../../../middleware/auth");
 
 const app = express();
 const router = express.Router();
 
 router.get("/list-products",
+//      auth(["admin", "emploey"]),
 productsControler.listproducts
 );
 
