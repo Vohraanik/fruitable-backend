@@ -33,7 +33,7 @@ app.use(
     }
   })
 );
-
+app.use(express.static(path.resolve('./public')));
 // const swaggerDocument = YAML.load('./src/api.yaml'); 
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(cors(
