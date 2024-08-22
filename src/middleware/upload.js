@@ -5,9 +5,9 @@ const path = require('path');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const fieldname = file.fieldname;
-    // const pathUpload = path.resolve('./public', fieldname);
+    const pathUpload = path.resolve('../../public/image', fieldname);
 
-    const pathUpload = path.join("/tmp", fieldname);
+    // const pathUpload = path.join("/tmp", fieldname);
 
   //   const pathUpload = path.join(
   //     process.cwd(),
