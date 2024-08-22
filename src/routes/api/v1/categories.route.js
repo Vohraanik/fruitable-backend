@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/list-categories",
     // sendOtp,
-    // auth(["admin", "emploey"]),
+    auth(["admin", "emploey"]),
     categoriesControler.listcategories
 );
 router.get("/list-categories/:category_id",
