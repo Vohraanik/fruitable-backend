@@ -6,12 +6,14 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const fieldname = file.fieldname;
     const pathUpload = path.join("public", fieldname);
+    console.log(fieldname,pathUpload,"gfdgfhc");
+    
 
     fs.mkdir(pathUpload, { recursive: true }, (err) => {
       if (err) {
         return cb(err, null);
       }
-      cb(null, pathUpload); // Move this inside the fs.mkdir callback
+      cb(null, pathUpload); 
     });
   },
   filename: function (req, file, cb) {

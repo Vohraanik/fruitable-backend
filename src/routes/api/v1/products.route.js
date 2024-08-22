@@ -2,6 +2,7 @@ const express = require("express");
 const { productsControler } = require("../../../controler");
 const upload = require("../../../middleware/upload");
 const auth = require("../../../middleware/auth");
+const multer = require("multer");
 
 const app = express();
 const router = express.Router();
@@ -12,12 +13,12 @@ productsControler.listproducts
 );
 
 router.post("/add-products",
-upload.single("image"),    
+upload.single("pro_image"),    
 productsControler.addproducts
 );
 
 router.put("/update-products/:products_id",
-upload.single("image"),    
+upload.single("image"),  
 productsControler.updateproducts
 );
 
