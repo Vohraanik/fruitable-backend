@@ -5,7 +5,9 @@ const path = require('path');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const fieldname = file.fieldname;
-    const pathUpload = path.resolve('./public', fieldname);
+    // const pathUpload = path.resolve('./public', fieldname);
+
+    const pathUpload = path.join("/tmp", fieldname);
 
   //   const pathUpload = path.join(
   //     process.cwd(),
@@ -15,7 +17,7 @@ const storage = multer.diskStorage({
     console.log(fieldname,pathUpload,"gfdgfhc");
     
 
-    fs.mkdir(pathUpload, { recursive: true }, (err) => {
+    fs.mkdirSync(pathUpload, { recursive: true }, (err) => {
       if (err) {
         return cb(err, null);
       }
