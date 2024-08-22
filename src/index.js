@@ -36,21 +36,21 @@ app.use(
 
 // const swaggerDocument = YAML.load('./src/api.yaml'); 
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-app.use(session({
-    secret:process.env.REFRESHTOKEN,
-    resave: false, 
-    saveUninitialized: true,
-    cookie: { secure: true }  
-}));
 app.use(cors(
-    {
-        // origin: process.env.SCOKETIO_URL,
-        origin: "https://fruitable-frontend-five.vercel.app",
-        credentials: true
+  {
+    // origin: process.env.SCOKETIO_URL,
+    origin: "https://fruitable-frontend-five.vercel.app",
+    credentials: true
 
-    }
+  }
 ));
+app.use(session({
+  secret: process.env.REFRESHTOKEN,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+
 
 app.use(cookieParser());
 app.use(require('express-session')({ secret: process.env.REFRESHTOKEN, resave: true, saveUninitialized: true }));
@@ -69,5 +69,5 @@ connectdb();
 // connectChat();
 
 app.listen(8080, () => {
-    console.log("server started at port 8080");
+  console.log("server started at port 8080");
 });
