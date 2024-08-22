@@ -5,7 +5,14 @@ const path = require('path');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const fieldname = file.fieldname;
-    const pathUpload = path.resolve('./public/image', fieldname);
+    // const pathUpload = path.resolve('./public/image', fieldname);
+
+    const pathUpload =   path.join(
+      process.cwd(),
+      'image',
+      fieldname
+  );
+
     console.log(fieldname,pathUpload,"gfdgfhc");
     
 
