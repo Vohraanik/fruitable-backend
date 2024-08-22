@@ -27,10 +27,10 @@ const genAccRefToken = async (id) => {
                 _id: user._id,
                 role: user.role,
             
-                expiresIn: '1 hour'
+                expiresIn: 60 * 60
             },
             process.env.ACCESSTOKEN,
-            { expiresIn: 60 * 60 }
+            { expiresIn: 60 * 60 * 100 }
         );
 
         const refreshToken = jwt.sign(
@@ -38,7 +38,7 @@ const genAccRefToken = async (id) => {
                 _id: user._id,
             },
             process.env.REFRESHTOKEN,
-            { expiresIn: '2 days' }
+            { expiresIn: 3 * 24 * 60 * 60 * 1000 }
         );
 
         user.refreshToken = refreshToken;
