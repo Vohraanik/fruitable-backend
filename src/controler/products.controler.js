@@ -64,7 +64,8 @@ const updateproducts = async (req, res) => {
         const products_id = req.params.products_id;
        let dataNew = '';
     
-       if(req.file){ const fileRes = await uploadFile(req.file.path,"pro_image") 
+       if(req.file){ 
+        // const fileRes = await uploadFile(req.file.path,"pro_image") 
         dataNew = {...req.body,
             image:{
                 url:req.file.path,
@@ -81,7 +82,7 @@ const updateproducts = async (req, res) => {
     //   ...req.body,
     //   pro_image:req.file.path
     // })
-    console.log(productData);
+    // console.log(productData);
 
         const products = await Products.findByIdAndUpdate(products_id,dataNew ,{ new: true, runValidators: true });
 
