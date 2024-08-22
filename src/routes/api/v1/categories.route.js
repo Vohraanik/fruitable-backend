@@ -24,7 +24,7 @@ router.post("/add-categories",
 );
 
 router.put("/update-categories/:category_id",
-    // validate(categoryValidation.updateCategory,),
+    validate(categoryValidation.updateCategory),
     categoriesControler.updatecategories
 );
 
