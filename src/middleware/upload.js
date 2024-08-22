@@ -49,7 +49,7 @@ const storage = multer.diskStorage({
 
   
     const pathUpload = isVercel 
-      ? path.join('/image', fieldname)
+      ? path.join('/tmp', fieldname)
       : path.join('public', fieldname);
 
    
