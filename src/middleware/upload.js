@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
   //     fieldname
   // );
 
-    console.log(fieldname,pathUpload,"gfdgfhc");
+    console.log(pathUpload,fieldname,);
     
 
     fs.mkdirSync(pathUpload, { recursive: true }, (err) => {
