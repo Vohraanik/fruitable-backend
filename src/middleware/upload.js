@@ -7,9 +7,8 @@ const storage = multer.diskStorage({
     const fieldname = file.fieldname;
     // const pathUpload = path.resolve('./public/image', fieldname);
 
-    const pathUpload =   path.join(
+    const pathUpload = path.join(
       process.cwd(),
-      'image',
       fieldname
   );
 
