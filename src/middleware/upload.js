@@ -40,22 +40,22 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 
-// Check if the code is running in Vercel environment
+
 const isVercel = process.env.VERCEL || process.env.NOW_REGION;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const fieldname = file.fieldname;
 
-    // Use '/tmp' directory on Vercel, otherwise use 'public' directory locally
+  
     const pathUpload = isVercel 
-      ? path.join('/tmp', fieldname)
+      ? path.join('/image', fieldname)
       : path.join('public', fieldname);
 
-    // Log the upload path
+   
     console.log(`Uploading to: ${pathUpload}`);
 
-    // Create directory if it doesn't exist
+  
     fs.mkdirSync(pathUpload, { recursive: true });
 
     cb(null, pathUpload); 
