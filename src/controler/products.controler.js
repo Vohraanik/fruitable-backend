@@ -25,15 +25,15 @@ const listproducts = async (req, res) => {
 };
 
 const addproducts = async (req, res) => {
-    console.log("Adding a new product");
+    console.log("Adding a new product", req.file);
     try {
-        const fileRes = await uploadFile(req.file.path,"product_image")
-        console.log(fileRes);
+        // const fileRes = await uploadFile(req.file.path,"image")
+        // console.log(fileRes);
 
         const products = await Products.create({...req.body,
             image:{
-                url:fileRes.url,
-                public_id:fileRes.public_id
+                url:req.file.path,
+                public_id:''
             },
 
         });
@@ -58,17 +58,17 @@ const addproducts = async (req, res) => {
 };
 
 const updateproducts = async (req, res) => {
- 
+   console.log(req.file.path,"path");
    
     try {
         const products_id = req.params.products_id;
        let dataNew = '';
     
-       if(req.file){ const fileRes = await uploadFile(req.file.path,"product_image") 
+       if(req.file){ const fileRes = await uploadFile(req.file.path,"pro_image") 
         dataNew = {...req.body,
             image:{
-                url:fileRes.url,
-                public_id:req.file.path
+                url:req.file.path,
+                public_id:"",
                 },
        }
       
@@ -81,10 +81,10 @@ const updateproducts = async (req, res) => {
     //   ...req.body,
     //   pro_image:req.file.path
     // })
-    console.log(dataNew);
+    console.log(productData);
 
         const products = await Products.findByIdAndUpdate(products_id,dataNew ,{ new: true, runValidators: true });
-        console.log(products);
+
         if (!products) {
             return res.status(400).json({
                 message: "Product not updated",

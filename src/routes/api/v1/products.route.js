@@ -8,22 +8,22 @@ const app = express();
 const router = express.Router();
 
 router.get("/list-products",
-     auth(["admin", "emploey"]),
-productsControler.listproducts
+    auth(["admin", "emploey"]),
+    productsControler.listproducts
 );
 
 router.post("/add-products",
-upload.single("pro_image"),    
-productsControler.addproducts
+    upload.single("image"),
+    productsControler.addproducts
 );
 
 router.put("/update-products/:products_id",
-upload.single("image"),  
-productsControler.updateproducts
+    upload.single("image"),
+    productsControler.updateproducts
 );
 
 router.delete("/delete-products/:products_id",
-productsControler.deleteproducts
+    productsControler.deleteproducts
 );
 
 router.get("/search",
