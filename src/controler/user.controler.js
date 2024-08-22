@@ -412,7 +412,7 @@ const logout = async (req, res) => {
 
 
 const authChecked = async (req, res) => {
-    console.log(res.body);
+    console.log(res.body,"sdsd");
     
 try {
     const accessToken = req.cookies.accessToken;
