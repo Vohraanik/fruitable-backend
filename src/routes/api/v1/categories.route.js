@@ -11,7 +11,8 @@ const router = express.Router();
 router.get("/list-categories",
     // sendOtp,
     auth(["admin", "emploey"]),
-    validate(categoriesControler.listcategories)
+    // validate(categoriesControler.listcategories)
+    categoriesControler.listcategories
 );
 router.get("/list-categories/:category_id",
     validate(categoryValidation.getCategory),
@@ -19,7 +20,7 @@ router.get("/list-categories/:category_id",
     categoriesControler.getcategories
 );
 router.post("/add-categories",
-    // validate(categoryValidation.createCategory),
+    validate(categoryValidation.createCategory),
     categoriesControler.addcategories
 );
 
