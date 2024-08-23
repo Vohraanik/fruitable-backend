@@ -19,7 +19,7 @@ router.get("/list-categories/:category_id",
     categoriesControler.getcategories
 );
 router.post("/add-categories",
-    validate(categoryValidation.createCategory),
+    // validate(categoryValidation.createCategory),
     categoriesControler.addcategories
 );
 
