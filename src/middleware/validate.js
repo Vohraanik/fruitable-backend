@@ -2,10 +2,12 @@ const Joi = require("joi");
 const pick = require("../helper/pick");
 
 const validate = (schema) => (req, res, next) => {
-    console.log(req);
+    console.log(req.body);
     
 
     const objs = pick(req, Object.keys(schema));
+    console.log(objs);
+    
 
 
     const { error, value } = Joi.compile(schema)

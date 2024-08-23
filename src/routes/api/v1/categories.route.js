@@ -11,12 +11,11 @@ const router = express.Router();
 router.get("/list-categories",
     // sendOtp,
     auth(["admin", "emploey"]),
-    // validate(categoriesControler.listcategories)
+
     categoriesControler.listcategories
 );
 router.get("/list-categories/:category_id",
-    validate(categoryValidation.getCategory),
-    verifyOTP,
+    // verifyOTP,
     categoriesControler.getcategories
 );
 router.post("/add-categories",
