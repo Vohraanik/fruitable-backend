@@ -21,9 +21,9 @@ const updateCategory = {
         description:Joi.string().required().max(100),
         _id:Joi.string()
     }),
-    params:Joi.object().keys({
-        category_id:Joi.string().required(),
-    })   
+    // params:Joi.object().keys({
+    //     category_id:Joi.string().required(),
+    // })   
 
 }
 
