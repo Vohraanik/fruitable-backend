@@ -19,7 +19,7 @@ const updateCategory = {
     body:Joi.object().keys({
         name:Joi.string().required().max(30).trim().uppercase(),
         description:Joi.string().required().max(100),
-        _id:Joi.string()
+        id:Joi.string()
     }),
     // params:Joi.object().keys({
     //     category_id:Joi.string().required(),
