@@ -27,13 +27,13 @@ const listproducts = async (req, res) => {
 const addproducts = async (req, res) => {
     console.log("Adding a new product", req.file);
     try {
-        // const fileRes = await uploadFile(req.file.path,"image")
-        // console.log(fileRes);
+        const fileRes = await uploadFile(req.file.path,"image")
+        console.log(fileRes);
 
         const products = await Products.create({...req.body,
             image:{
-                url:req.file.path,
-                public_id:''
+                url:fileRes.url,
+                public_id:fileRes.public_id
             },
 
         });
@@ -65,11 +65,11 @@ const updateproducts = async (req, res) => {
        let dataNew = '';
     
        if(req.file){ 
-        // const fileRes = await uploadFile(req.file.path,"pro_image") 
+        const fileRes = await uploadFile(req.file.path,"pro_image") 
         dataNew = {...req.body,
             image:{
-                url:req.file.path,
-                public_id:"",
+                url:fileRes.url,
+                public_id:fileRes.public_id,
                 },
        }
       
