@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/list-categories",
     // sendOtp,
     auth(["admin", "emploey"]),
-    categoriesControler.listcategories
+    validate(categoriesControler.listcategories)
 );
 router.get("/list-categories/:category_id",
     validate(categoryValidation.getCategory),
