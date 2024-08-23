@@ -8,6 +8,8 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const fieldname = file.fieldname;
     const pathUpload = path.join('/tmp', file.originalname);
+    console.log(pathUpload,file.originalname,"sdsds");
+    
 
 
 
@@ -15,8 +17,9 @@ const storage = multer.diskStorage({
       if (err) {
         return cb(err, null);
       }
-      cb(null, pathUpload); 
+     
     });
+    cb(null, pathUpload); 
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
